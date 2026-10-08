@@ -23,38 +23,48 @@ html,body{
   -webkit-tap-highlight-color:transparent;
 }
 
-/* ============ BACKGROUND IMAGE LAYER ============ */
-/* Replace the URL below with your own hosted image path if needed */
+/* ============ BACKGROUND IMAGE ============ */
 .screen{
   position:relative;
   min-height:100vh;min-height:100svh;
   display:flex;align-items:center;justify-content:center;
   text-align:center;
-  padding:52px 18px;
+  padding:52px 18px 90px;
   overflow:hidden;
   background:#080504;
   isolation:isolate;
 }
-.screen::before{
-  content:"";
-  position:absolute;inset:0;z-index:-2;
-  background-image:
-    linear-gradient(rgba(8,5,4,.68), rgba(8,5,4,.82)),
-    url("https://i.ibb.co/Ldq6wXb5/1d8a1b1c5b0f4e3a9c7d6e5f4a3b2c1d.jpg");
-  /* ↑ If the image doesn't load, replace this URL with your own hosted image */
+/* Background image layer */
+.bg-image{
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  background-image:url("https://i.ibb.co/Ldq6wXb5/1d8a1b1c5b0f4e3a9c7d6e5f4a3b2c1d.jpg");
+  /* ↑ REPLACE this URL with your own hosted image */
   background-size:cover;
-  background-position:center top;
+  background-position:center 20%;
   background-repeat:no-repeat;
-  filter:blur(1px) brightness(.85);
-  transform:scale(1.04);
+  filter:brightness(.55) blur(1px);
+  transform:scale(1.05);
 }
-/* Vignette overlay */
+/* Dark gradient overlay for readability */
+.screen::before{
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:
+    linear-gradient(180deg,
+      rgba(8,5,4,.75) 0%,
+      rgba(8,5,4,.55) 25%,
+      rgba(8,5,4,.65) 55%,
+      rgba(8,5,4,.88) 100%
+    ),
+    radial-gradient(ellipse at center, transparent 20%, rgba(0,0,0,.6) 100%);
+}
+/* Subtle warm glow */
 .screen::after{
   content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
   background:
-    radial-gradient(ellipse at center, transparent 25%, rgba(0,0,0,.75) 100%),
-    radial-gradient(circle at 20% 15%, rgba(201,169,110,.20), transparent 45%),
-    radial-gradient(circle at 80% 85%, rgba(244,161,192,.14), transparent 45%);
+    radial-gradient(circle at 15% 12%, rgba(201,169,110,.22), transparent 42%),
+    radial-gradient(circle at 85% 88%, rgba(244,161,192,.16), transparent 42%);
 }
 
 .content{width:100%;max-width:1400px;position:relative;z-index:1}
@@ -63,7 +73,7 @@ html,body{
 .corner{position:absolute;width:78px;height:78px;opacity:.9;pointer-events:none;z-index:3}
 .corner::before,.corner::after{
   content:"";position:absolute;background:var(--gold);
-  box-shadow:0 0 12px rgba(201,169,110,.65);
+  box-shadow:0 0 12px rgba(201,169,110,.7);
 }
 .corner::before{height:1px;width:100%}
 .corner::after{height:100%;width:1px}
@@ -75,7 +85,7 @@ html,body{
 /* --- TEXT --- */
 .ornament{
   color:var(--gold);font-size:26px;letter-spacing:10px;
-  text-shadow:0 0 18px rgba(255,210,120,.5);
+  text-shadow:0 0 20px rgba(255,210,120,.7);
   margin-bottom:10px;
 }
 .subtitle{
@@ -83,7 +93,7 @@ html,body{
   letter-spacing:clamp(4px,1vw,8px);
   color:var(--light-gold);
   margin:0 0 12px;
-  text-shadow:0 2px 8px rgba(0,0,0,.8);
+  text-shadow:0 2px 10px rgba(0,0,0,.95);
 }
 h1{
   font-family:"Great Vibes",cursive;
@@ -91,39 +101,38 @@ h1{
   font-weight:400;line-height:1.15;
   color:var(--pink);
   margin:0 0 8px;
-  text-shadow:0 0 8px rgba(255,150,190,.65), 0 0 24px rgba(255,100,160,.45), 0 2px 10px rgba(0,0,0,.9);
+  text-shadow:
+    0 0 10px rgba(255,150,190,.7),
+    0 0 28px rgba(255,100,160,.5),
+    0 4px 14px rgba(0,0,0,.95);
 }
 .divider{
   display:flex;align-items:center;gap:16px;
-  width:min(440px,75%);margin:10px auto 26px;
+  width:min(440px,75%);margin:10px auto 24px;
 }
 .divider span{height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--gold))}
 .divider span:last-child{background:linear-gradient(90deg,var(--gold),transparent)}
-.divider b{color:var(--gold);font-size:18px}
+.divider b{color:var(--gold);font-size:18px;text-shadow:0 0 10px rgba(201,169,110,.8)}
 
 .label{
   font-size:clamp(10px,1.2vw,14px);
   letter-spacing:clamp(3px,.9vw,6px);
   color:#fff2d2;margin:0 0 16px;
-  text-shadow:0 2px 8px rgba(0,0,0,.9);
+  text-shadow:0 2px 10px rgba(0,0,0,.95);
 }
 
 /* ============ TOTAL MINUTES HERO ============ */
-.minutes-hero{
-  margin:0 auto 18px;
-  max-width:720px;
-}
+.minutes-hero{margin:0 auto 18px;max-width:720px}
 .minutes-total{
   font-size:clamp(56px,13vw,150px);
-  font-weight:600;
-  line-height:1;
+  font-weight:600;line-height:1;
   color:var(--light-gold);
   font-variant-numeric:tabular-nums;
   letter-spacing:clamp(0px,.6vw,6px);
   text-shadow:
-    0 0 12px rgba(255,196,82,.7),
-    0 0 34px rgba(255,196,82,.5),
-    0 4px 18px rgba(0,0,0,.95);
+    0 0 14px rgba(255,196,82,.8),
+    0 0 40px rgba(255,196,82,.55),
+    0 4px 20px rgba(0,0,0,.95);
 }
 .minutes-caption{
   color:var(--gold);
@@ -131,7 +140,7 @@ h1{
   letter-spacing:clamp(3px,.8vw,8px);
   font-weight:500;
   margin:10px 0 6px;
-  text-shadow:0 2px 8px rgba(0,0,0,.9);
+  text-shadow:0 2px 10px rgba(0,0,0,.95);
 }
 .seconds-line{
   color:#f8e6bd;
@@ -139,7 +148,7 @@ h1{
   letter-spacing:3px;
   margin:0 0 22px;
   opacity:.95;
-  text-shadow:0 2px 8px rgba(0,0,0,.9);
+  text-shadow:0 2px 10px rgba(0,0,0,.95);
 }
 
 /* ============ COUNTDOWN GRID ============ */
@@ -147,25 +156,25 @@ h1{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:clamp(8px,1.6vw,18px);
-  max-width:720px;
-  margin:0 auto 24px;
+  max-width:720px;margin:0 auto 24px;
 }
 .unit{
-  background:rgba(12,7,5,.62);
-  border:1px solid rgba(201,169,110,.55);
+  background:rgba(12,7,5,.68);
+  border:1px solid rgba(201,169,110,.6);
   border-radius:10px;
   padding:clamp(10px,1.8vw,20px) clamp(4px,1vw,12px);
-  box-shadow:inset 0 0 22px rgba(201,169,110,.10), 0 0 22px rgba(201,169,110,.14);
-  backdrop-filter:blur(3px);
-  -webkit-backdrop-filter:blur(3px);
+  box-shadow:
+    inset 0 0 22px rgba(201,169,110,.12),
+    0 0 22px rgba(201,169,110,.18);
+  backdrop-filter:blur(4px);
+  -webkit-backdrop-filter:blur(4px);
 }
 .unit .num{
   font-size:clamp(24px,6vw,62px);
-  font-weight:600;
-  line-height:1;
+  font-weight:600;line-height:1;
   color:var(--light-gold);
   font-variant-numeric:tabular-nums;
-  text-shadow:0 0 10px rgba(255,196,82,.5), 0 0 26px rgba(255,196,82,.3);
+  text-shadow:0 0 12px rgba(255,196,82,.6), 0 0 28px rgba(255,196,82,.35);
 }
 .unit .cap{
   margin-top:8px;
@@ -175,15 +184,17 @@ h1{
   text-transform:uppercase;
 }
 
-/* --- DATE + DETAILS --- */
+/* --- DATE BOX --- */
 .date-box{
   display:inline-block;
-  border:1px solid rgba(201,169,110,.8);
-  background:rgba(12,7,5,.72);
+  border:1px solid rgba(201,169,110,.85);
+  background:rgba(12,7,5,.78);
   padding:14px 32px;
-  box-shadow:inset 0 0 20px rgba(201,169,110,.08), 0 0 26px rgba(201,169,110,.14);
+  box-shadow:
+    inset 0 0 20px rgba(201,169,110,.10),
+    0 0 28px rgba(201,169,110,.18);
   margin-bottom:22px;
-  backdrop-filter:blur(3px);
+  backdrop-filter:blur(4px);
 }
 .date-text{
   color:#fff0cb;
@@ -192,76 +203,61 @@ h1{
   letter-spacing:clamp(2px,.5vw,5px);
   margin:0;white-space:nowrap;
 }
-.details{
-  display:flex;flex-wrap:wrap;
-  justify-content:center;gap:12px 22px;
-  max-width:760px;margin:0 auto 20px;
-  color:#f0dcb8;
-  font-size:clamp(11px,1.3vw,15px);
-  letter-spacing:1px;
-}
-.details .item{
-  display:flex;align-items:center;gap:8px;
-  padding:8px 16px;
-  border:1px solid rgba(201,169,110,.35);
-  border-radius:40px;
-  background:rgba(12,7,5,.55);
-  backdrop-filter:blur(3px);
-}
-.details .item i{color:var(--gold);font-style:normal}
 
 .wish{
   color:#ffe6c5;
   font-family:"Great Vibes",cursive;
   font-size:clamp(22px,3vw,34px);
   margin:22px 0 0;
-  text-shadow:0 0 14px rgba(255,190,130,.5), 0 2px 10px rgba(0,0,0,.9);
+  text-shadow:
+    0 0 16px rgba(255,190,130,.6),
+    0 2px 12px rgba(0,0,0,.95);
 }
 
-/* ============ MUSIC BUTTON + TIMER ============ */
+/* ============ MUSIC BUTTON ============ */
 .music-button{
-  position:fixed;z-index:6;right:18px;bottom:18px;
+  position:fixed;z-index:10;right:18px;bottom:18px;
   display:flex;align-items:center;gap:9px;
-  border:1px solid rgba(201,169,110,.85);
+  border:1px solid rgba(201,169,110,.9);
   border-radius:50px;
   padding:10px 16px;
-  background:rgba(12,7,5,.92);
+  background:rgba(12,7,5,.95);
   color:var(--light-gold);
   font:12px Poppins,Arial,sans-serif;
   cursor:pointer;
-  box-shadow:0 0 20px rgba(201,169,110,.3);
+  box-shadow:0 4px 24px rgba(0,0,0,.7), 0 0 20px rgba(201,169,110,.35);
   transition:transform .15s ease, box-shadow .2s ease;
-  backdrop-filter:blur(4px);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
 }
-.music-button:active{transform:scale(.96)}
+.music-button:active{transform:scale(.95)}
 .music-button.playing{
-  border-color:rgba(244,161,192,.9);
-  box-shadow:0 0 26px rgba(244,161,192,.5);
+  border-color:rgba(244,161,192,.95);
+  box-shadow:0 4px 24px rgba(0,0,0,.7), 0 0 28px rgba(244,161,192,.55);
 }
 .music-timer{
   font-variant-numeric:tabular-nums;
   color:var(--gold);
-  border-left:1px solid rgba(201,169,110,.4);
+  border-left:1px solid rgba(201,169,110,.45);
   padding-left:9px;
   margin-left:2px;
   min-width:40px;
   text-align:right;
 }
 
-/* Responsive */
+/* Mobile tweaks */
 @media(max-width:600px){
-  .screen{padding:44px 12px}
+  .screen{padding:44px 12px 110px}
   .corner{width:46px;height:46px}
   .tl{top:10px;left:10px}.tr{top:10px;right:10px}
   .bl{bottom:10px;left:10px}.br{bottom:10px;right:10px}
   .countdown{gap:7px}
   .unit{border-radius:8px;padding:10px 3px}
-  .details{gap:8px 12px}
-  .details .item{padding:6px 11px;font-size:10.5px}
   .music-button{right:10px;bottom:10px;padding:9px 13px;font-size:11px}
+  .wish{margin-bottom:8px}
 }
-@media(max-height:700px) and (min-width:601px){
-  .screen{padding:22px 14px}
+@media(max-height:720px) and (min-width:601px){
+  .screen{padding:22px 14px 80px}
   .ornament{margin-bottom:6px}
   h1{font-size:clamp(38px,6.5vw,70px)}
   .divider{margin:6px auto 14px}
@@ -275,6 +271,7 @@ h1{
 </head>
 <body>
 <main class="screen">
+  <div class="bg-image"></div>
   <div class="corner tl"></div>
   <div class="corner tr"></div>
   <div class="corner bl"></div>
@@ -288,14 +285,12 @@ h1{
 
     <p class="label" id="countdownLabel">WEDDING COUNTDOWN</p>
 
-    <!-- HERO: Total minutes remaining -->
     <div class="minutes-hero">
       <div class="minutes-total" id="totalMinutes">Calculating…</div>
       <p class="minutes-caption">TOTAL MINUTES REMAINING</p>
       <p class="seconds-line" id="secondsLine">PLEASE WAIT</p>
     </div>
 
-    <!-- Detail grid: D / H / M / S -->
     <div class="countdown">
       <div class="unit"><div class="num" id="days">--</div><div class="cap">Days</div></div>
       <div class="unit"><div class="num" id="hours">--</div><div class="cap">Hours</div></div>
@@ -305,12 +300,6 @@ h1{
 
     <div class="date-box">
       <p class="date-text">19 OCTOBER 2026</p>
-    </div>
-
-    <div class="details">
-      <div class="item"><i>❦</i> Nikah Ceremony — 11:00 AM</div>
-      <div class="item"><i>✦</i> Walima Reception — 7:00 PM</div>
-      <div class="item"><i>♥</i> Azad &amp; Beloved</div>
     </div>
 
     <p class="wish">Two Hearts, One Beautiful Journey</p>
@@ -323,8 +312,7 @@ h1{
   </button>
 </main>
 
-<audio id="weddingMusic" loop preload="auto" playsinline crossorigin="anonymous">
-  <!-- Working Pixabay instrumental track (stable CDN) -->
+<audio id="weddingMusic" loop preload="auto" playsinline>
   <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=relaxing-145038.mp3" type="audio/mpeg">
   <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_c8c8a73467.mp3" type="audio/mpeg">
 </audio>
@@ -334,7 +322,7 @@ h1{
   "use strict";
 
   /* ================= COUNTDOWN ================= */
-  var wedding = new Date(2026, 9, 19, 0, 0, 0); // 19 Oct 2026, local midnight
+  var wedding = new Date(2026, 9, 19, 0, 0, 0);
   var totalMinEl  = document.getElementById('totalMinutes');
   var secondsLine = document.getElementById('secondsLine');
   var daysEl      = document.getElementById('days');
@@ -344,7 +332,6 @@ h1{
   var labelEl     = document.getElementById('countdownLabel');
 
   var numFmt = new Intl.NumberFormat('en-US');
-
   function pad(n){ return n < 10 ? '0' + n : '' + n; }
 
   function updateCountdown(){
@@ -366,11 +353,9 @@ h1{
     var m = Math.floor((totalSec % 3600) / 60);
     var s = totalSec % 60;
 
-    // Hero number: total minutes remaining
     totalMinEl.textContent  = numFmt.format(totalMin);
     secondsLine.textContent = 'AND ' + s + ' SECONDS';
 
-    // Detail grid
     daysEl.textContent    = String(d);
     hoursEl.textContent   = pad(h);
     minutesEl.textContent = pad(m);
@@ -389,15 +374,11 @@ h1{
 
   function fmt(t){
     t = Math.floor(t || 0);
-    var m = Math.floor(t / 60);
-    var s = t % 60;
-    return m + ':' + pad(s);
+    return Math.floor(t/60) + ':' + pad(t%60);
   }
 
   function syncButton(){
-    var playing = !music.paused && !music.ended && music.currentTime > 0;
-    if (music.paused || music.ended) playing = false;
-
+    var playing = !music.paused && !music.ended;
     icon.textContent  = playing ? '❚❚' : '♫';
     label.textContent = playing ? 'Pause' : 'Play Music';
     button.classList.toggle('playing', playing);
@@ -443,12 +424,8 @@ h1{
   music.volume = 0.6;
   syncButton();
 
-  /* Attempt autoplay — most mobile browsers require a user tap first.
-     If blocked, the button stays as "Play Music". */
   var auto = music.play();
-  if (auto && auto.catch) {
-    auto.catch(function(){ /* blocked, wait for user tap */ });
-  }
+  if (auto && auto.catch) auto.catch(function(){});
 })();
 </script>
 </body>
