@@ -13,7 +13,6 @@
   --gold:#c9a96e;
   --light-gold:#ffe8ae;
   --pink:#f4a1c0;
-  --deep:#080504;
 }
 *{box-sizing:border-box}
 html,body{
@@ -23,43 +22,47 @@ html,body{
   -webkit-tap-highlight-color:transparent;
 }
 
-/* ============ BACKGROUND IMAGE ============ */
+/* ============ SCREEN ============ */
 .screen{
   position:relative;
   min-height:100vh;min-height:100svh;
   display:flex;align-items:center;justify-content:center;
   text-align:center;
-  padding:52px 18px 90px;
+  padding:52px 18px 130px;
   overflow:hidden;
-  background:#080504;
   isolation:isolate;
+  /* Fallback gradient — always visible if image fails */
+  background:
+    radial-gradient(circle at 20% 15%, rgba(201,169,110,.28), transparent 50%),
+    radial-gradient(circle at 80% 85%, rgba(244,161,192,.22), transparent 50%),
+    linear-gradient(160deg, #1a0f0a 0%, #0b0705 50%, #150c09 100%);
 }
-/* Background image layer */
+
+/* ============ BACKGROUND IMAGE ============ */
 .bg-image{
   position:absolute;
   inset:0;
   z-index:-2;
-  background-image:url("https://i.ibb.co/Ldq6wXb5/1d8a1b1c5b0f4e3a9c7d6e5f4a3b2c1d.jpg");
-  /* ↑ REPLACE this URL with your own hosted image */
-  background-size:cover;
-  background-position:center 20%;
-  background-repeat:no-repeat;
-  filter:brightness(.55) blur(1px);
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center 25%;
+  filter:brightness(.6);
   transform:scale(1.05);
 }
-/* Dark gradient overlay for readability */
+
+/* Dark overlay for readability */
 .screen::before{
   content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
   background:
     linear-gradient(180deg,
-      rgba(8,5,4,.75) 0%,
-      rgba(8,5,4,.55) 25%,
-      rgba(8,5,4,.65) 55%,
-      rgba(8,5,4,.88) 100%
+      rgba(8,5,4,.72) 0%,
+      rgba(8,5,4,.45) 25%,
+      rgba(8,5,4,.55) 55%,
+      rgba(8,5,4,.90) 100%
     ),
     radial-gradient(ellipse at center, transparent 20%, rgba(0,0,0,.6) 100%);
 }
-/* Subtle warm glow */
 .screen::after{
   content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
   background:
@@ -193,7 +196,7 @@ h1{
   box-shadow:
     inset 0 0 20px rgba(201,169,110,.10),
     0 0 28px rgba(201,169,110,.18);
-  margin-bottom:22px;
+  margin-bottom:28px;
   backdrop-filter:blur(4px);
 }
 .date-text{
@@ -208,24 +211,26 @@ h1{
   color:#ffe6c5;
   font-family:"Great Vibes",cursive;
   font-size:clamp(22px,3vw,34px);
-  margin:22px 0 0;
+  margin:0 0 20px 0;
   text-shadow:
     0 0 16px rgba(255,190,130,.6),
     0 2px 12px rgba(0,0,0,.95);
+  position:relative;
+  z-index:2;
 }
 
 /* ============ MUSIC BUTTON ============ */
 .music-button{
-  position:fixed;z-index:10;right:18px;bottom:18px;
-  display:flex;align-items:center;gap:9px;
+  position:fixed;z-index:10;right:14px;bottom:14px;
+  display:flex;align-items:center;gap:8px;
   border:1px solid rgba(201,169,110,.9);
   border-radius:50px;
-  padding:10px 16px;
+  padding:9px 14px;
   background:rgba(12,7,5,.95);
   color:var(--light-gold);
-  font:12px Poppins,Arial,sans-serif;
+  font:11px Poppins,Arial,sans-serif;
   cursor:pointer;
-  box-shadow:0 4px 24px rgba(0,0,0,.7), 0 0 20px rgba(201,169,110,.35);
+  box-shadow:0 4px 20px rgba(0,0,0,.75), 0 0 18px rgba(201,169,110,.35);
   transition:transform .15s ease, box-shadow .2s ease;
   backdrop-filter:blur(6px);
   -webkit-backdrop-filter:blur(6px);
@@ -233,36 +238,36 @@ h1{
 .music-button:active{transform:scale(.95)}
 .music-button.playing{
   border-color:rgba(244,161,192,.95);
-  box-shadow:0 4px 24px rgba(0,0,0,.7), 0 0 28px rgba(244,161,192,.55);
+  box-shadow:0 4px 20px rgba(0,0,0,.75), 0 0 24px rgba(244,161,192,.55);
 }
 .music-timer{
   font-variant-numeric:tabular-nums;
   color:var(--gold);
   border-left:1px solid rgba(201,169,110,.45);
-  padding-left:9px;
+  padding-left:8px;
   margin-left:2px;
-  min-width:40px;
+  min-width:36px;
   text-align:right;
 }
 
-/* Mobile tweaks */
 @media(max-width:600px){
-  .screen{padding:44px 12px 110px}
+  .screen{padding:44px 12px 130px}
   .corner{width:46px;height:46px}
   .tl{top:10px;left:10px}.tr{top:10px;right:10px}
   .bl{bottom:10px;left:10px}.br{bottom:10px;right:10px}
   .countdown{gap:7px}
   .unit{border-radius:8px;padding:10px 3px}
-  .music-button{right:10px;bottom:10px;padding:9px 13px;font-size:11px}
-  .wish{margin-bottom:8px}
+  .music-button{right:10px;bottom:10px;padding:8px 12px;font-size:10.5px}
+  .wish{margin-bottom:24px;font-size:20px}
+  .date-box{margin-bottom:32px}
 }
 @media(max-height:720px) and (min-width:601px){
-  .screen{padding:22px 14px 80px}
+  .screen{padding:22px 14px 110px}
   .ornament{margin-bottom:6px}
   h1{font-size:clamp(38px,6.5vw,70px)}
   .divider{margin:6px auto 14px}
   .minutes-total{font-size:clamp(60px,10vw,110px)}
-  .wish{margin-top:12px}
+  .wish{margin-top:12px;margin-bottom:30px}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
@@ -271,7 +276,13 @@ h1{
 </head>
 <body>
 <main class="screen">
-  <div class="bg-image"></div>
+
+  <!-- BACKGROUND IMAGE with automatic fallback -->
+  <img class="bg-image" id="bgImg"
+       src="https://i.ibb.co/vbvhpVL/wedding.jpg"
+       alt="Azad Wedding"
+       onerror="this.onerror=null; this.style.display='none';">
+
   <div class="corner tl"></div>
   <div class="corner tr"></div>
   <div class="corner bl"></div>
@@ -314,7 +325,6 @@ h1{
 
 <audio id="weddingMusic" loop preload="auto" playsinline>
   <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=relaxing-145038.mp3" type="audio/mpeg">
-  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_c8c8a73467.mp3" type="audio/mpeg">
 </audio>
 
 <script>
@@ -400,8 +410,8 @@ h1{
       var p = music.play();
       if (p && p.catch){
         p.catch(function(){
-          label.textContent = 'Tap again';
-          icon.textContent  = '⚠';
+          label.textContent = 'Play Music';
+          icon.textContent  = '♫';
         });
       }
     } else {
@@ -416,16 +426,9 @@ h1{
   music.addEventListener('timeupdate', function(){
     timerEl.textContent = fmt(music.currentTime);
   });
-  music.addEventListener('error', function(){
-    label.textContent = 'Audio error';
-    icon.textContent  = '⚠';
-  });
 
   music.volume = 0.6;
   syncButton();
-
-  var auto = music.play();
-  if (auto && auto.catch) auto.catch(function(){});
 })();
 </script>
 </body>
