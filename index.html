@@ -5,279 +5,350 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#080504">
 <title>Azad Ki Shadi Mubarak — Wedding Countdown</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
-:root{
-  --gold:#c9a96e;
-  --light-gold:#ffe8ae;
-  --pink:#f4a1c0;
-}
-*{box-sizing:border-box}
-html,body{
-  margin:0;min-height:100%;
-  background:#080504;color:#fff;
-  font-family:Poppins,Arial,sans-serif;
-  -webkit-tap-highlight-color:transparent;
+:root {
+  --gold: #c9a96e;
+  --light-gold: #ffe8ae;
+  --pink: #f4a1c0;
 }
 
-.screen{
-  position:relative;
-  min-height:100vh;min-height:100svh;
-  display:flex;align-items:center;justify-content:center;
-  text-align:center;
-  padding:52px 18px 160px;
-  overflow:hidden;
-  isolation:isolate;
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  background: #080504;
+  color: white;
+  font-family: Poppins, Arial, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.screen {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 48px 16px 130px;
+  overflow: hidden;
+  isolation: isolate;
+  background: #100805;
+}
+
+/* BACKGROUND PHOTO: bg.jpg */
+.bg-image {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  filter: brightness(.68);
+}
+
+/* DARK OVERLAY FOR READABLE TEXT */
+.screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
   background:
-    radial-gradient(circle at 20% 15%, rgba(201,169,110,.28), transparent 50%),
-    radial-gradient(circle at 80% 85%, rgba(244,161,192,.22), transparent 50%),
-    linear-gradient(160deg, #1a0f0a 0%, #0b0705 50%, #150c09 100%);
-}
-
-/* ============ BACKGROUND IMAGE ============ */
-/* ▼▼▼ CHANGE 'bg.jpg' TO YOUR IMAGE FILENAME IF DIFFERENT ▼▼▼ */
-.bg-image{
-  position:absolute;
-  inset:0;
-  z-index:-2;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:center 25%;
-  filter:brightness(.6);
-  transform:scale(1.05);
-}
-
-.screen::before{
-  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
-  background:
-    linear-gradient(180deg,
-      rgba(8,5,4,.72) 0%,
-      rgba(8,5,4,.45) 25%,
-      rgba(8,5,4,.55) 55%,
-      rgba(8,5,4,.90) 100%
+    linear-gradient(
+      180deg,
+      rgba(8,5,4,.48) 0%,
+      rgba(8,5,4,.38) 35%,
+      rgba(8,5,4,.60) 72%,
+      rgba(8,5,4,.84) 100%
     ),
-    radial-gradient(ellipse at center, transparent 20%, rgba(0,0,0,.6) 100%);
+    radial-gradient(
+      ellipse at center,
+      transparent 15%,
+      rgba(0,0,0,.30) 100%
+    );
 }
-.screen::after{
-  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+
+.screen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
   background:
-    radial-gradient(circle at 15% 12%, rgba(201,169,110,.22), transparent 42%),
-    radial-gradient(circle at 85% 88%, rgba(244,161,192,.16), transparent 42%);
+    radial-gradient(circle at 15% 12%,
+      rgba(201,169,110,.13), transparent 42%),
+    radial-gradient(circle at 85% 88%,
+      rgba(244,161,192,.13), transparent 42%);
 }
 
-.content{width:100%;max-width:1400px;position:relative;z-index:1}
+/* FALLING PETALS CANVAS */
+#petalsCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+}
 
-.corner{position:absolute;width:78px;height:78px;opacity:.9;pointer-events:none;z-index:3}
-.corner::before,.corner::after{
-  content:"";position:absolute;background:var(--gold);
-  box-shadow:0 0 12px rgba(201,169,110,.7);
+.content {
+  width: 100%;
+  max-width: 1400px;
+  position: relative;
+  z-index: 2;
 }
-.corner::before{height:1px;width:100%}
-.corner::after{height:100%;width:1px}
-.tl{top:16px;left:16px}
-.tr{top:16px;right:16px;transform:scaleX(-1)}
-.bl{bottom:16px;left:16px;transform:scaleY(-1)}
-.br{bottom:16px;right:16px;transform:scale(-1)}
 
-.ornament{
-  color:var(--gold);font-size:26px;letter-spacing:10px;
-  text-shadow:0 0 20px rgba(255,210,120,.7);
-  margin-bottom:10px;
+.corner {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  opacity: .9;
+  pointer-events: none;
+  z-index: 4;
 }
-.subtitle{
-  font-size:clamp(10px,1.2vw,15px);
-  letter-spacing:clamp(4px,1vw,8px);
-  color:var(--light-gold);
-  margin:0 0 12px;
-  text-shadow:0 2px 10px rgba(0,0,0,.95);
+
+.corner::before,
+.corner::after {
+  content: "";
+  position: absolute;
+  background: var(--gold);
+  box-shadow: 0 0 12px rgba(201,169,110,.7);
 }
-h1{
-  font-family:"Great Vibes",cursive;
-  font-size:clamp(42px,9vw,104px);
-  font-weight:400;line-height:1.15;
-  color:var(--pink);
-  margin:0 0 8px;
+
+.corner::before { height: 1px; width: 100%; }
+.corner::after { height: 100%; width: 1px; }
+
+.tl { top: 14px; left: 14px; }
+.tr { top: 14px; right: 14px; transform: scaleX(-1); }
+.bl { bottom: 14px; left: 14px; transform: scaleY(-1); }
+.br { bottom: 14px; right: 14px; transform: scale(-1); }
+
+.ornament {
+  color: var(--gold);
+  font-size: 26px;
+  letter-spacing: 10px;
+  text-shadow: 0 0 20px rgba(255,210,120,.7);
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: clamp(10px, 1.2vw, 15px);
+  letter-spacing: clamp(3px, 1vw, 8px);
+  color: var(--light-gold);
+  margin: 0 0 12px;
+  text-shadow: 0 2px 10px #000;
+}
+
+h1 {
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(42px, 8.5vw, 104px);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--pink);
+  margin: 0 0 8px;
   text-shadow:
     0 0 10px rgba(255,150,190,.7),
     0 0 28px rgba(255,100,160,.5),
-    0 4px 14px rgba(0,0,0,.95);
-}
-.divider{
-  display:flex;align-items:center;gap:16px;
-  width:min(440px,75%);margin:10px auto 24px;
-}
-.divider span{height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--gold))}
-.divider span:last-child{background:linear-gradient(90deg,var(--gold),transparent)}
-.divider b{color:var(--gold);font-size:18px;text-shadow:0 0 10px rgba(201,169,110,.8)}
-
-.label{
-  font-size:clamp(10px,1.2vw,14px);
-  letter-spacing:clamp(3px,.9vw,6px);
-  color:#fff2d2;margin:0 0 16px;
-  text-shadow:0 2px 10px rgba(0,0,0,.95);
+    0 4px 14px #000;
 }
 
-.minutes-hero{margin:0 auto 18px;max-width:720px}
-.minutes-total{
-  font-size:clamp(56px,13vw,150px);
-  font-weight:600;line-height:1;
-  color:var(--light-gold);
-  font-variant-numeric:tabular-nums;
-  letter-spacing:clamp(0px,.6vw,6px);
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: min(440px, 75%);
+  margin: 10px auto 24px;
+}
+
+.divider span {
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+
+.divider span:last-child {
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+.divider b {
+  color: var(--gold);
+  font-size: 18px;
+}
+
+.label {
+  font-size: clamp(10px, 1.2vw, 14px);
+  letter-spacing: clamp(2px, .9vw, 6px);
+  color: #fff2d2;
+  margin: 0 0 16px;
+  text-shadow: 0 2px 10px #000;
+}
+
+.minutes-hero {
+  margin: 0 auto 18px;
+  max-width: 720px;
+}
+
+.minutes-total {
+  font-size: clamp(48px, 12vw, 140px);
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--light-gold);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
   text-shadow:
     0 0 14px rgba(255,196,82,.8),
-    0 0 40px rgba(255,196,82,.55),
-    0 4px 20px rgba(0,0,0,.95);
-}
-.minutes-caption{
-  color:var(--gold);
-  font-size:clamp(11px,1.35vw,16px);
-  letter-spacing:clamp(3px,.8vw,8px);
-  font-weight:500;
-  margin:10px 0 6px;
-  text-shadow:0 2px 10px rgba(0,0,0,.95);
-}
-.seconds-line{
-  color:#f8e6bd;
-  font-size:clamp(11px,1.2vw,14px);
-  letter-spacing:3px;
-  margin:0 0 22px;
-  opacity:.95;
-  text-shadow:0 2px 10px rgba(0,0,0,.95);
+    0 0 40px rgba(255,196,82,.45),
+    0 4px 20px #000;
 }
 
-.countdown{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:clamp(8px,1.6vw,18px);
-  max-width:720px;margin:0 auto 24px;
+.minutes-caption {
+  color: var(--gold);
+  font-size: clamp(10px, 1.35vw, 16px);
+  letter-spacing: clamp(2px, .8vw, 8px);
+  font-weight: 500;
+  margin: 10px 0 6px;
+  text-shadow: 0 2px 10px #000;
 }
-.unit{
-  background:rgba(12,7,5,.68);
-  border:1px solid rgba(201,169,110,.6);
-  border-radius:10px;
-  padding:clamp(10px,1.8vw,20px) clamp(4px,1vw,12px);
+
+.seconds-line {
+  color: #f8e6bd;
+  font-size: clamp(11px, 1.2vw, 14px);
+  letter-spacing: 3px;
+  margin: 0 0 22px;
+  text-shadow: 0 2px 10px #000;
+}
+
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(6px, 1.6vw, 18px);
+  max-width: 720px;
+  margin: 0 auto 24px;
+}
+
+.unit {
+  background: rgba(12,7,5,.72);
+  border: 1px solid rgba(201,169,110,.7);
+  border-radius: 10px;
+  padding: clamp(10px, 1.8vw, 20px) 4px;
   box-shadow:
     inset 0 0 22px rgba(201,169,110,.12),
     0 0 22px rgba(201,169,110,.18);
-  backdrop-filter:blur(4px);
-  -webkit-backdrop-filter:blur(4px);
-}
-.unit .num{
-  font-size:clamp(24px,6vw,62px);
-  font-weight:600;line-height:1;
-  color:var(--light-gold);
-  font-variant-numeric:tabular-nums;
-  text-shadow:0 0 12px rgba(255,196,82,.6), 0 0 28px rgba(255,196,82,.35);
-}
-.unit .cap{
-  margin-top:8px;
-  font-size:clamp(8px,1.1vw,12px);
-  letter-spacing:clamp(2px,.7vw,5px);
-  color:var(--gold);
-  text-transform:uppercase;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
-.date-box{
-  display:inline-block;
-  border:1px solid rgba(201,169,110,.85);
-  background:rgba(12,7,5,.78);
-  padding:14px 32px;
-  box-shadow:
-    inset 0 0 20px rgba(201,169,110,.10),
-    0 0 28px rgba(201,169,110,.18);
-  margin-bottom:40px;
-  backdrop-filter:blur(4px);
-}
-.date-text{
-  color:#fff0cb;
-  font-size:clamp(13px,1.7vw,19px);
-  font-weight:500;
-  letter-spacing:clamp(2px,.5vw,5px);
-  margin:0;white-space:nowrap;
+.unit .num {
+  font-size: clamp(23px, 5.5vw, 62px);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--light-gold);
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 12px rgba(255,196,82,.6);
 }
 
-.wish{
-  color:#ffe6c5;
-  font-family:"Great Vibes",cursive;
-  font-size:clamp(22px,3vw,34px);
-  margin:0 0 70px 0;
-  text-shadow:
-    0 0 16px rgba(255,190,130,.6),
-    0 2px 12px rgba(0,0,0,.95);
-  position:relative;
-  z-index:2;
+.unit .cap {
+  margin-top: 8px;
+  font-size: clamp(8px, 1.1vw, 12px);
+  letter-spacing: clamp(1px, .7vw, 5px);
+  color: var(--gold);
+  text-transform: uppercase;
 }
 
-.music-button{
-  position:fixed;z-index:10;right:14px;bottom:14px;
-  display:flex;align-items:center;gap:8px;
-  border:1px solid rgba(201,169,110,.9);
-  border-radius:50px;
-  padding:9px 14px;
-  background:rgba(12,7,5,.95);
-  color:var(--light-gold);
-  font:11px Poppins,Arial,sans-serif;
-  cursor:pointer;
-  box-shadow:0 4px 20px rgba(0,0,0,.75), 0 0 18px rgba(201,169,110,.35);
-  transition:transform .15s ease, box-shadow .2s ease;
-  backdrop-filter:blur(6px);
-  -webkit-backdrop-filter:blur(6px);
-}
-.music-button:active{transform:scale(.95)}
-.music-button.playing{
-  border-color:rgba(244,161,192,.95);
-  box-shadow:0 4px 20px rgba(0,0,0,.75), 0 0 24px rgba(244,161,192,.55);
-}
-.music-timer{
-  font-variant-numeric:tabular-nums;
-  color:var(--gold);
-  border-left:1px solid rgba(201,169,110,.45);
-  padding-left:8px;
-  margin-left:2px;
-  min-width:36px;
-  text-align:right;
+.date-box {
+  display: inline-block;
+  border: 1px solid rgba(201,169,110,.85);
+  background: rgba(12,7,5,.78);
+  padding: 13px 22px;
+  box-shadow: 0 0 28px rgba(201,169,110,.18);
+  margin-bottom: 30px;
+  backdrop-filter: blur(4px);
 }
 
-@media(max-width:600px){
-  .screen{padding:44px 12px 170px}
-  .corner{width:46px;height:46px}
-  .tl{top:10px;left:10px}.tr{top:10px;right:10px}
-  .bl{bottom:10px;left:10px}.br{bottom:10px;right:10px}
-  .countdown{gap:7px}
-  .unit{border-radius:8px;padding:10px 3px}
-  .music-button{right:10px;bottom:10px;padding:8px 12px;font-size:10.5px}
-  .wish{margin-bottom:80px;font-size:20px}
-  .date-box{margin-bottom:44px}
+.date-text {
+  color: #fff0cb;
+  font-size: clamp(12px, 1.7vw, 19px);
+  font-weight: 500;
+  letter-spacing: clamp(1px, .5vw, 5px);
+  margin: 0;
 }
-@media(max-height:720px) and (min-width:601px){
-  .screen{padding:22px 14px 130px}
-  .ornament{margin-bottom:6px}
-  h1{font-size:clamp(38px,6.5vw,70px)}
-  .divider{margin:6px auto 14px}
-  .minutes-total{font-size:clamp(60px,10vw,110px)}
-  .wish{margin-top:12px;margin-bottom:70px}
+
+.wish {
+  color: #ffe6c5;
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(23px, 3vw, 34px);
+  margin: 0 0 30px;
+  text-shadow: 0 0 16px rgba(255,190,130,.6), 0 2px 12px #000;
 }
-@media(prefers-reduced-motion:reduce){
-  *{animation:none!important;transition:none!important}
+
+.music-button {
+  position: fixed;
+  z-index: 10;
+  right: 14px;
+  bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(201,169,110,.9);
+  border-radius: 50px;
+  padding: 10px 14px;
+  background: rgba(12,7,5,.96);
+  color: var(--light-gold);
+  font: 11px Poppins, Arial, sans-serif;
+  cursor: pointer;
+  box-shadow: 0 4px 20px #000, 0 0 18px rgba(201,169,110,.35);
+}
+
+.music-button.playing {
+  border-color: var(--pink);
+  box-shadow: 0 0 24px rgba(244,161,192,.5);
+}
+
+.music-timer {
+  font-variant-numeric: tabular-nums;
+  color: var(--gold);
+  border-left: 1px solid rgba(201,169,110,.45);
+  padding-left: 8px;
+  min-width: 36px;
+  text-align: right;
+}
+
+@media(max-width:600px) {
+  .screen { padding: 42px 12px 105px; }
+  .corner { width: 42px; height: 42px; }
+  .tl { top: 10px; left: 10px; }
+  .tr { top: 10px; right: 10px; }
+  .bl { bottom: 10px; left: 10px; }
+  .br { bottom: 10px; right: 10px; }
+  .countdown { gap: 6px; }
+  .unit { border-radius: 8px; padding: 12px 2px; }
+  .date-box { padding: 12px 15px; margin-bottom: 25px; }
+  .wish { font-size: 23px; }
+  .music-button { right: 10px; bottom: 10px; }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  #petalsCanvas { display: none; }
 }
 </style>
 </head>
+
 <body>
 <main class="screen">
 
-  <!-- ============================================
-       BACKGROUND IMAGE
-       Make sure 'bg.jpg' is in the SAME folder
-       as this index.html file on GitHub.
-       If your image has a different name,
-       change 'bg.jpg' below to match.
-       ============================================ -->
+  <!-- Keep bg.jpg in the same folder as index.html -->
   <img class="bg-image" src="bg.jpg" alt="Azad Wedding"
        onerror="this.style.display='none';">
+
+  <canvas id="petalsCanvas" aria-hidden="true"></canvas>
 
   <div class="corner tl"></div>
   <div class="corner tr"></div>
@@ -287,22 +358,38 @@ h1{
   <section class="content">
     <div class="ornament">✧ ❦ ✧</div>
     <p class="subtitle">A CELEBRATION OF LOVE</p>
+
     <h1>Azad Ki Shadi Mubarak</h1>
-    <div class="divider"><span></span><b>❦</b><span></span></div>
+
+    <div class="divider">
+      <span></span><b>❦</b><span></span>
+    </div>
 
     <p class="label" id="countdownLabel">WEDDING COUNTDOWN</p>
 
     <div class="minutes-hero">
-      <div class="minutes-total" id="totalMinutes">Calculating…</div>
+      <div class="minutes-total" id="totalMinutes">Calculating...</div>
       <p class="minutes-caption">TOTAL MINUTES REMAINING</p>
       <p class="seconds-line" id="secondsLine">PLEASE WAIT</p>
     </div>
 
     <div class="countdown">
-      <div class="unit"><div class="num" id="days">--</div><div class="cap">Days</div></div>
-      <div class="unit"><div class="num" id="hours">--</div><div class="cap">Hours</div></div>
-      <div class="unit"><div class="num" id="minutes">--</div><div class="cap">Mins</div></div>
-      <div class="unit"><div class="num" id="secondsNum">--</div><div class="cap">Secs</div></div>
+      <div class="unit">
+        <div class="num" id="days">--</div>
+        <div class="cap">Days</div>
+      </div>
+      <div class="unit">
+        <div class="num" id="hours">--</div>
+        <div class="cap">Hours</div>
+      </div>
+      <div class="unit">
+        <div class="num" id="minutes">--</div>
+        <div class="cap">Mins</div>
+      </div>
+      <div class="unit">
+        <div class="num" id="secondsNum">--</div>
+        <div class="cap">Secs</div>
+      </div>
     </div>
 
     <div class="date-box">
@@ -312,57 +399,67 @@ h1{
     <p class="wish">Two Hearts, One Beautiful Journey</p>
   </section>
 
-  <button class="music-button" id="musicButton" type="button" aria-label="Toggle music">
+  <button class="music-button" id="musicButton"
+          type="button" aria-label="Play or pause wedding music">
     <span id="musicIcon">♫</span>
     <span id="musicLabel">Play Music</span>
     <span class="music-timer" id="musicTimer">0:00</span>
   </button>
+
 </main>
 
-<!-- ============================================
-     BACKGROUND MUSIC (romantic wedding piano)
-     ============================================ -->
+<!-- BACKGROUND WEDDING MUSIC -->
 <audio id="weddingMusic" loop preload="auto" playsinline>
-  <source src="https://cdn.pixabay.com/audio/2026/01/13/audio_465808.mp3" type="audio/mpeg">
+  <source src="https://cdn.pixabay.com/audio/2026/01/13/audio_465808.mp3"
+          type="audio/mpeg">
 </audio>
 
-<!-- ============================================
-     CLOCK TICK SOUND (plays every second)
-     ============================================ -->
+<!-- CLOCK TICK SOUND -->
 <audio id="tickSound" preload="auto" playsinline>
-  <source src="https://cdn.pixabay.com/audio/2025/06/24/audio_365218.mp3" type="audio/mpeg">
+  <source src="https://cdn.pixabay.com/audio/2025/06/24/audio_365218.mp3"
+          type="audio/mpeg">
 </audio>
 
 <script>
-(function(){
+(function () {
   "use strict";
 
-  /* ================= COUNTDOWN ================= */
+  /* ========== LIVE WEDDING COUNTDOWN ========== */
+
+  // Month 9 means October in JavaScript.
+  // The countdown ends at midnight on 19 October 2026
+  // according to the visitor's local time.
   var wedding = new Date(2026, 9, 19, 0, 0, 0);
-  var totalMinEl  = document.getElementById('totalMinutes');
-  var secondsLine = document.getElementById('secondsLine');
-  var daysEl      = document.getElementById('days');
-  var hoursEl     = document.getElementById('hours');
-  var minutesEl   = document.getElementById('minutes');
-  var secNumEl    = document.getElementById('secondsNum');
-  var labelEl     = document.getElementById('countdownLabel');
 
-  var tickSound = document.getElementById('tickSound');
-  var numFmt = new Intl.NumberFormat('en-US');
-  var audioEnabled = false; // unlocked after first user tap
+  var totalMinEl = document.getElementById("totalMinutes");
+  var secondsLine = document.getElementById("secondsLine");
+  var daysEl = document.getElementById("days");
+  var hoursEl = document.getElementById("hours");
+  var minutesEl = document.getElementById("minutes");
+  var secNumEl = document.getElementById("secondsNum");
+  var labelEl = document.getElementById("countdownLabel");
+
+  var tickSound = document.getElementById("tickSound");
+  var audioEnabled = false;
   var lastSecond = -1;
+  var numFmt = new Intl.NumberFormat("en-US");
 
-  function pad(n){ return n < 10 ? '0' + n : '' + n; }
+  function pad(n) {
+    return n < 10 ? "0" + n : String(n);
+  }
 
-  function updateCountdown(){
-    var now  = new Date();
+  function updateCountdown() {
+    var now = new Date();
     var diff = wedding.getTime() - now.getTime();
 
-    if (diff <= 0){
-      totalMinEl.textContent  = '0';
-      secondsLine.textContent = 'THE BIG DAY IS HERE';
-      daysEl.textContent = hoursEl.textContent = minutesEl.textContent = secNumEl.textContent = '0';
-      labelEl.textContent = 'HAPPY WEDDING DAY';
+    if (diff <= 0) {
+      totalMinEl.textContent = "0";
+      secondsLine.textContent = "THE BIG DAY IS HERE!";
+      daysEl.textContent = "0";
+      hoursEl.textContent = "00";
+      minutesEl.textContent = "00";
+      secNumEl.textContent = "00";
+      labelEl.textContent = "HAPPY WEDDING DAY";
       return;
     }
 
@@ -373,88 +470,247 @@ h1{
     var m = Math.floor((totalSec % 3600) / 60);
     var s = totalSec % 60;
 
-    totalMinEl.textContent  = numFmt.format(totalMin);
-    secondsLine.textContent = 'AND ' + s + ' SECONDS';
+    totalMinEl.textContent = numFmt.format(totalMin);
+    secondsLine.textContent = "AND " + s + " SECONDS";
 
-    daysEl.textContent    = String(d);
-    hoursEl.textContent   = pad(h);
+    daysEl.textContent = String(d);
+    hoursEl.textContent = pad(h);
     minutesEl.textContent = pad(m);
-    secNumEl.textContent  = pad(s);
+    secNumEl.textContent = pad(s);
 
-    /* Play tick sound on each new second (after user enables audio) */
     if (s !== lastSecond) {
       lastSecond = s;
+
       if (audioEnabled && tickSound) {
         try {
           tickSound.currentTime = 0;
-          tickSound.volume = 0.35;
-          tickSound.play().catch(function(){});
-        } catch(e) {}
+          tickSound.volume = 0.25;
+
+          var tickPromise = tickSound.play();
+          if (tickPromise && tickPromise.catch) {
+            tickPromise.catch(function () {});
+          }
+        } catch (e) {}
       }
     }
   }
+
   updateCountdown();
-  setInterval(updateCountdown, 1000);
+  setInterval(updateCountdown, 250);
 
-  /* ================= MUSIC + TIMER ================= */
-  var music    = document.getElementById('weddingMusic');
-  var button   = document.getElementById('musicButton');
-  var icon     = document.getElementById('musicIcon');
-  var label    = document.getElementById('musicLabel');
-  var timerEl  = document.getElementById('musicTimer');
-  var timerInt = null;
 
-  function fmt(t){
-    t = Math.floor(t || 0);
-    return Math.floor(t/60) + ':' + pad(t%60);
+  /* ========== FALLING ROSE PETALS ========== */
+
+  var canvas = document.getElementById("petalsCanvas");
+  var ctx = canvas.getContext("2d");
+  var screen = document.querySelector(".screen");
+  var petals = [];
+  var canvasWidth = 0;
+  var canvasHeight = 0;
+  var animationFrame = null;
+  var reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  function resizeCanvas() {
+    var rect = screen.getBoundingClientRect();
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    canvasWidth = rect.width;
+    canvasHeight = rect.height;
+
+    canvas.width = Math.round(canvasWidth * dpr);
+    canvas.height = Math.round(canvasHeight * dpr);
+
+    canvas.style.width = canvasWidth + "px";
+    canvas.style.height = canvasHeight + "px";
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    var count = Math.min(
+      75,
+      Math.max(28, Math.floor(canvasWidth / 8))
+    );
+
+    petals = [];
+
+    for (var i = 0; i < count; i++) {
+      petals.push(makePetal(true));
+    }
   }
 
-  function syncButton(){
-    var playing = !music.paused && !music.ended;
-    icon.textContent  = playing ? '❚❚' : '♫';
-    label.textContent = playing ? 'Pause' : 'Play Music';
-    button.classList.toggle('playing', playing);
+  function makePetal(randomY) {
+    return {
+      x: Math.random() * Math.max(canvasWidth, 1),
+      y: randomY ? Math.random() * Math.max(canvasHeight, 1)
+                 : -20 - Math.random() * 100,
+      size: 5 + Math.random() * 8,
+      speed: 0.8 + Math.random() * 1.7,
+      drift: (Math.random() - 0.5) * 1.1,
+      angle: Math.random() * Math.PI * 2,
+      spin: (Math.random() - 0.5) * 0.055,
+      sway: Math.random() * Math.PI * 2,
+      swaySpeed: 0.012 + Math.random() * 0.025,
+      alpha: 0.55 + Math.random() * 0.4,
+      color: Math.random() > 0.72
+        ? "#e7bd75"
+        : (Math.random() > 0.5 ? "#f4a1c0" : "#c94d79")
+    };
+  }
 
-    if (playing){
-      if (!timerInt){
-        timerInt = setInterval(function(){
-          timerEl.textContent = fmt(music.currentTime);
-        }, 300);
+  function drawPetal(p) {
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.angle);
+    ctx.globalAlpha = p.alpha;
+
+    ctx.fillStyle = p.color;
+    ctx.beginPath();
+    ctx.moveTo(0, -p.size);
+    ctx.bezierCurveTo(
+      p.size * 1.05, -p.size * 0.65,
+      p.size * 1.05, p.size * 0.45,
+      0, p.size
+    );
+    ctx.bezierCurveTo(
+      -p.size * 1.05, p.size * 0.45,
+      -p.size * 1.05, -p.size * 0.65,
+      0, -p.size
+    );
+    ctx.fill();
+
+    ctx.restore();
+  }
+
+  function animatePetals() {
+    if (reduceMotion || document.hidden) {
+      animationFrame = null;
+      return;
+    }
+
+    ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+
+    for (var i = 0; i < petals.length; i++) {
+      var p = petals[i];
+
+      p.sway += p.swaySpeed;
+      p.x += p.drift + Math.sin(p.sway) * 0.8;
+      p.y += p.speed;
+      p.angle += p.spin;
+
+      drawPetal(p);
+
+      if (p.y > canvasHeight + 25 ||
+          p.x < -30 || p.x > canvasWidth + 30) {
+        petals[i] = makePetal(false);
       }
+    }
+
+    animationFrame = requestAnimationFrame(animatePetals);
+  }
+
+  function startPetals() {
+    if (reduceMotion || animationFrame !== null) return;
+    animationFrame = requestAnimationFrame(animatePetals);
+  }
+
+  function stopPetals() {
+    if (animationFrame !== null) {
+      cancelAnimationFrame(animationFrame);
+      animationFrame = null;
+    }
+  }
+
+  resizeCanvas();
+  startPetals();
+
+  window.addEventListener("resize", function () {
+    resizeCanvas();
+    startPetals();
+  });
+
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) {
+      stopPetals();
     } else {
+      startPetals();
+    }
+  });
+
+
+  /* ========== MUSIC BUTTON AND TIMER ========== */
+
+  var music = document.getElementById("weddingMusic");
+  var button = document.getElementById("musicButton");
+  var icon = document.getElementById("musicIcon");
+  var musicLabel = document.getElementById("musicLabel");
+  var timerEl = document.getElementById("musicTimer");
+  var timerInt = null;
+
+  function fmt(t) {
+    t = Math.floor(t || 0);
+    return Math.floor(t / 60) + ":" + pad(t % 60);
+  }
+
+  function syncButton() {
+    var playing = !music.paused && !music.ended;
+
+    icon.textContent = playing ? "❚❚" : "♫";
+    musicLabel.textContent = playing ? "Pause" : "Play Music";
+    button.classList.toggle("playing", playing);
+
+    if (playing && timerInt === null) {
+      timerInt = setInterval(function () {
+        timerEl.textContent = fmt(music.currentTime);
+      }, 300);
+    } else if (!playing && timerInt !== null) {
       clearInterval(timerInt);
       timerInt = null;
     }
   }
 
-  button.addEventListener('click', function(){
-    audioEnabled = true; // unlock audio on first tap
+  button.addEventListener("click", function () {
+    // User interaction enables the ticking sound.
+    audioEnabled = true;
 
-    if (music.paused){
-      var p = music.play();
-      if (p && p.catch){
-        p.catch(function(){
-          label.textContent = 'Play Music';
-          icon.textContent  = '♫';
+    if (music.paused) {
+      var playPromise = music.play();
+
+      if (playPromise && playPromise.catch) {
+        playPromise.catch(function () {
+          musicLabel.textContent = "Try Again";
+          icon.textContent = "♫";
         });
       }
     } else {
       music.pause();
     }
+
+    // Attempt to unlock the tick audio after the tap.
+    try {
+      tickSound.play().then(function () {
+        tickSound.pause();
+        tickSound.currentTime = 0;
+      }).catch(function () {});
+    } catch (e) {}
   });
 
-  music.addEventListener('play',  syncButton);
-  music.addEventListener('playing', syncButton);
-  music.addEventListener('pause', syncButton);
-  music.addEventListener('ended', syncButton);
-  music.addEventListener('timeupdate', function(){
+  music.addEventListener("play", syncButton);
+  music.addEventListener("playing", syncButton);
+  music.addEventListener("pause", syncButton);
+  music.addEventListener("ended", syncButton);
+
+  music.addEventListener("timeupdate", function () {
     timerEl.textContent = fmt(music.currentTime);
   });
 
   music.volume = 0.55;
-  tickSound.volume = 0.35;
+  tickSound.volume = 0.25;
+
   syncButton();
+
 })();
 </script>
+
 </body>
 </html>
