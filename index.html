@@ -2,622 +2,384 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#100805">
-<title>Azad Ki Shadi Mubarak</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A New Chapter of Forever</title>
 
 <style>
-:root {
-  --gold: #e5c27e;
-  --pink: #ffc0d7;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-* { box-sizing: border-box; }
-
-html, body {
-  margin: 0;
-  min-height: 100%;
-  background: #100805;
-  color: white;
-  font-family: Poppins, Arial, sans-serif;
+body {
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: Georgia, "Times New Roman", serif;
+    color: #fff4dc;
+    background:
+        linear-gradient(rgba(20, 5, 15, 0.52), rgba(20, 5, 15, 0.72)),
+        url("bg.jpg") center center / cover no-repeat fixed;
 }
 
-.screen {
-  position: relative;
-  isolation: isolate;
-  min-height: 100vh;
-  min-height: 100svh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 45px 14px 100px;
-  overflow: hidden;
-  background: #100805;
+#petals {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
 }
 
-/* BACKGROUND IMAGE */
-.bg-image {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center center;
-  z-index: -2;
+.container {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px;
 }
 
-/* IMAGE DARKNESS */
-.screen::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background: linear-gradient(
-    180deg,
-    rgba(8,4,3,.42),
-    rgba(8,4,3,.35) 40%,
-    rgba(8,4,3,.70)
-  );
+.card {
+    width: min(100%, 750px);
+    padding: 42px 24px;
+    border: 1px solid rgba(255, 220, 160, 0.75);
+    border-radius: 22px;
+    background: rgba(28, 8, 22, 0.38);
+    box-shadow: 0 0 35px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(3px);
 }
 
-/* PETALS STAY BEHIND THE TEXT */
-#petalsCanvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.content {
-  width: 100%;
-  max-width: 1100px;
-  position: relative;
-  z-index: 2;
-}
-
-.ornament {
-  color: var(--gold);
-  font-size: 25px;
-  letter-spacing: 9px;
-  text-shadow: 0 0 20px #e5c27e;
-}
-
-.subtitle {
-  color: #ffe8ae;
-  letter-spacing: 4px;
-  font-size: 12px;
-  margin: 8px 0;
-  text-shadow: 0 2px 8px #000;
+.eyebrow {
+    color: #f3ce8b;
+    letter-spacing: 5px;
+    font-size: 13px;
+    margin-bottom: 22px;
 }
 
 h1 {
-  font-family: "Great Vibes", cursive;
-  color: var(--pink);
-  font-weight: 400;
-  font-size: clamp(43px, 8vw, 100px);
-  line-height: 1.2;
-  margin: 5px 0;
-  text-shadow: 0 0 15px #a82e61, 0 3px 12px #000;
+    font-size: clamp(35px, 7vw, 66px);
+    line-height: 1.12;
+    font-weight: normal;
+    color: #ffe7b0;
+    text-shadow: 0 3px 18px rgba(0, 0, 0, 0.7);
+}
+
+.subtitle {
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    letter-spacing: 6px;
+    color: #fff0d0;
 }
 
 .divider {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  max-width: 400px;
-  width: 75%;
-  margin: 12px auto 24px;
-  color: var(--gold);
+    width: 100px;
+    height: 1px;
+    background: #e8bd77;
+    margin: 28px auto;
 }
 
-.divider span {
-  height: 1px;
-  flex: 1;
-  background: var(--gold);
+.countdown-label {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #f3ce8b;
+    margin-bottom: 12px;
 }
 
-.label {
-  color: #fff1d2;
-  letter-spacing: 4px;
-  font-size: 12px;
-  text-shadow: 0 2px 8px #000;
+#minutes {
+    font-size: clamp(42px, 9vw, 76px);
+    color: #fff0c9;
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 0 20px rgba(255, 202, 120, 0.25);
 }
 
-.minutes-total {
-  color: #ffe8ae;
-  font-size: clamp(44px, 11vw, 130px);
-  font-weight: 600;
-  line-height: 1.15;
-  overflow-wrap: anywhere;
-  font-variant-numeric: tabular-nums;
-  text-shadow: 0 0 18px #bc8837, 0 3px 15px #000;
+#seconds {
+    margin-top: 8px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+    color: #f7dcb1;
 }
 
-.minutes-caption {
-  color: var(--gold);
-  letter-spacing: 3px;
-  font-size: 12px;
+.date {
+    margin-top: 24px;
+    font-size: 17px;
+    color: #ffe4b1;
+    letter-spacing: 2px;
 }
 
-.seconds-line {
-  color: #fff0d0;
-  font-size: 12px;
-  letter-spacing: 3px;
+.message {
+    margin-top: 20px;
+    font-size: 15px;
+    font-style: italic;
+    color: #f8e6d3;
 }
 
-.countdown {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 9px;
-  width: 100%;
-  max-width: 700px;
-  margin: 25px auto;
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 28px;
 }
 
-.unit {
-  background: rgba(20, 9, 8, .78);
-  border: 1px solid rgba(229,194,126,.85);
-  border-radius: 10px;
-  padding: 16px 3px;
-  box-shadow: 0 0 18px rgba(229,194,126,.2);
-  backdrop-filter: blur(3px);
+button {
+    border: 1px solid #e8bd77;
+    background: rgba(40, 10, 25, 0.7);
+    color: #ffe7b0;
+    padding: 12px 18px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 13px;
+    letter-spacing: 1px;
+    transition: 0.25s;
 }
 
-.num {
-  font-size: clamp(24px, 5.5vw, 56px);
-  color: #ffe8ae;
-  font-weight: 600;
-  font-variant-numeric: tabular-nums;
+button:hover {
+    background: #e8bd77;
+    color: #301020;
 }
 
-.cap {
-  font-size: 10px;
-  letter-spacing: 2px;
-  color: var(--gold);
-  text-transform: uppercase;
-}
+@media (max-width: 480px) {
+    .card {
+        padding: 34px 16px;
+    }
 
-.date-box {
-  display: inline-block;
-  padding: 12px 20px;
-  margin: 5px 0 20px;
-  border: 1px solid var(--gold);
-  background: rgba(15,7,5,.8);
-}
+    .eyebrow {
+        letter-spacing: 3px;
+    }
 
-.date-text {
-  margin: 0;
-  color: #fff0cb;
-  letter-spacing: 3px;
-  font-size: 14px;
-}
-
-.wish {
-  font-family: "Great Vibes", cursive;
-  color: #ffe6c5;
-  font-size: 30px;
-  margin: 0 0 20px;
-  text-shadow: 0 2px 10px #000;
-}
-
-.music-button {
-  position: fixed;
-  right: 12px;
-  bottom: 12px;
-  z-index: 10;
-  border: 1px solid var(--gold);
-  border-radius: 30px;
-  padding: 12px 16px;
-  background: #160c08;
-  color: #ffe8ae;
-  font: 12px Poppins, sans-serif;
-  cursor: pointer;
-  box-shadow: 0 0 18px rgba(229,194,126,.3);
-}
-
-.music-button.playing {
-  border-color: var(--pink);
-}
-
-@media(max-width:600px) {
-  .screen { padding: 45px 10px 90px; }
-  .subtitle { letter-spacing: 3px; }
-  .countdown { gap: 5px; }
-  .unit { padding: 12px 2px; }
-  .cap { font-size: 8px; letter-spacing: 1px; }
-  .date-text { font-size: 12px; letter-spacing: 2px; }
-  .wish { font-size: 25px; }
-}
-
-@media(prefers-reduced-motion:reduce) {
-  #petalsCanvas { display: none; }
+    .subtitle {
+        letter-spacing: 4px;
+    }
 }
 </style>
 </head>
 
 <body>
-<main class="screen">
+<canvas id="petals"></canvas>
 
-  <!-- Upload your photo as bg.jpg beside index.html -->
-  <img class="bg-image" src="bg.jpg" alt="Wedding background"
-       onerror="this.style.display='none'; document.getElementById('imageWarning').hidden=false;">
+<main class="container">
+    <section class="card">
+        <div class="eyebrow">✨ A BEAUTIFUL BEGINNING ✨</div>
 
-  <canvas id="petalsCanvas" aria-hidden="true"></canvas>
+        <h1>A New Chapter<br>of Forever</h1>
 
-  <section class="content">
-    <div class="ornament">✧ ❦ ✧</div>
-    <p class="subtitle">A CELEBRATION OF LOVE</p>
+        <div class="subtitle">WEDDING COUNTDOWN</div>
 
-    <h1>Azad Ki Shadi Mubarak</h1>
+        <div class="divider"></div>
 
-    <div class="divider">
-      <span></span>❦<span></span>
-    </div>
+        <div class="countdown-label">MINUTES REMAINING</div>
+        <div id="minutes">Calculating...</div>
+        <div id="seconds">Until the big day</div>
 
-    <p id="imageWarning" hidden style="color:#ffe8ae;background:#200d0d;padding:8px">
-      Background image not found. Please upload bg.jpg beside index.html.
-    </p>
+        <div class="date">19 OCTOBER 2026</div>
 
-    <p class="label" id="countdownLabel">WEDDING COUNTDOWN</p>
+        <p class="message">
+            Two hearts, one beautiful journey, forever together.
+        </p>
 
-    <div class="minutes-total" id="totalMinutes">Loading...</div>
-    <p class="minutes-caption">TOTAL MINUTES REMAINING</p>
-    <p class="seconds-line" id="secondsLine">PLEASE WAIT</p>
-
-    <div class="countdown">
-      <div class="unit">
-        <div class="num" id="days">--</div>
-        <div class="cap">Days</div>
-      </div>
-      <div class="unit">
-        <div class="num" id="hours">--</div>
-        <div class="cap">Hours</div>
-      </div>
-      <div class="unit">
-        <div class="num" id="minutes">--</div>
-        <div class="cap">Minutes</div>
-      </div>
-      <div class="unit">
-        <div class="num" id="seconds">--</div>
-        <div class="cap">Seconds</div>
-      </div>
-    </div>
-
-    <div class="date-box">
-      <p class="date-text">19 OCTOBER 2026</p>
-    </div>
-
-    <p class="wish">Two Hearts, One Beautiful Journey</p>
-  </section>
-
-  <button class="music-button" id="musicButton" type="button">
-    ♫ <span id="musicLabel">Start Music & Sound</span>
-  </button>
-
+        <div class="controls">
+            <button id="musicButton">♫ Play Music</button>
+            <button id="tickButton">♪ Enable Ticking</button>
+        </div>
+    </section>
 </main>
 
 <script>
-(function () {
-  "use strict";
+// WEDDING COUNTDOWN
+const wedding = new Date(2026, 9, 19);
 
-  /* ===== COUNTDOWN ===== */
+function updateCountdown() {
+    const now = new Date();
+    const difference = wedding.getTime() - now.getTime();
 
-  const wedding = new Date(2026, 9, 19, 0, 0, 0);
-
-  const $ = id => document.getElementById(id);
-
-  let audioEnabled = false;
-  let lastSecond = -1;
-  let audioContext = null;
-  let musicPlaying = false;
-  let musicTimer = null;
-  let melodyIndex = 0;
-  let nextNoteTime = 0;
-
-  const numberFormat = new Intl.NumberFormat("en-US");
-
-  function pad(n) {
-    return String(n).padStart(2, "0");
-  }
-
-  function updateCountdown() {
-    const diff = wedding.getTime() - Date.now();
-
-    if (diff <= 0) {
-      $("totalMinutes").textContent = "0";
-      $("secondsLine").textContent = "THE BIG DAY IS HERE!";
-      $("countdownLabel").textContent = "HAPPY WEDDING DAY";
-      $("days").textContent = "0";
-      $("hours").textContent = "00";
-      $("minutes").textContent = "00";
-      $("seconds").textContent = "00";
-      return;
+    if (difference <= 0) {
+        document.getElementById("minutes").textContent = "00";
+        document.getElementById("seconds").textContent =
+            "The big day is here! ❤️";
+        return;
     }
 
-    const totalSec = Math.floor(diff / 1000);
-    const s = totalSec % 60;
+    const totalMinutes = Math.floor(difference / 60000);
+    const seconds = Math.floor((difference % 60000) / 1000);
 
-    $("totalMinutes").textContent =
-      numberFormat.format(Math.floor(totalSec / 60));
+    document.getElementById("minutes").textContent =
+        totalMinutes.toLocaleString("en-US");
 
-    $("secondsLine").textContent = "AND " + s + " SECONDS";
-    $("days").textContent = Math.floor(totalSec / 86400);
-    $("hours").textContent = pad(Math.floor(totalSec % 86400 / 3600));
-    $("minutes").textContent = pad(Math.floor(totalSec % 3600 / 60));
-    $("seconds").textContent = pad(s);
+    document.getElementById("seconds").textContent =
+        "＋ " + String(seconds).padStart(2, "0") +
+        " seconds to the next minute";
+}
 
-    if (audioEnabled && s !== lastSecond) {
-      playTick();
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+
+// AUDIO: TICKING SOUND AND SOFT MELODY
+let audioContext;
+let musicTimer;
+let musicOn = false;
+let tickingOn = false;
+let nextNoteTime = 0;
+let noteIndex = 0;
+
+function setupAudio() {
+    if (!audioContext) {
+        const AudioContextClass =
+            window.AudioContext || window.webkitAudioContext;
+
+        if (!AudioContextClass) {
+            alert("Audio is not supported by this browser.");
+            return false;
+        }
+
+        audioContext = new AudioContextClass();
     }
 
-    lastSecond = s;
-  }
+    if (audioContext.state === "suspended") {
+        audioContext.resume();
+    }
 
-  updateCountdown();
-  setInterval(updateCountdown, 200);
+    return true;
+}
 
-
-  /* ===== BUILT-IN TICKING SOUND ===== */
-
-  function playTone(frequency, duration, volume, when) {
+function playTone(frequency, duration, volume, type = "sine") {
     if (!audioContext) return;
 
-    const osc = audioContext.createOscillator();
+    const oscillator = audioContext.createOscillator();
     const gain = audioContext.createGain();
-    const start = when || audioContext.currentTime;
 
-    osc.type = "sine";
-    osc.frequency.setValueAtTime(frequency, start);
-
-    gain.gain.setValueAtTime(0.0001, start);
+    oscillator.type = type;
+    oscillator.frequency.value = frequency;
+    gain.gain.setValueAtTime(volume, audioContext.currentTime);
     gain.gain.exponentialRampToValueAtTime(
-      Math.max(volume, 0.0002), start + 0.008
-    );
-    gain.gain.exponentialRampToValueAtTime(
-      0.0001, start + duration
+        0.001,
+        audioContext.currentTime + duration
     );
 
-    osc.connect(gain);
+    oscillator.connect(gain);
     gain.connect(audioContext.destination);
 
-    osc.start(start);
-    osc.stop(start + duration + 0.02);
-  }
+    oscillator.start();
+    oscillator.stop(audioContext.currentTime + duration);
+}
 
-  function playTick() {
-    if (!audioEnabled || !audioContext) return;
+// Gentle ticking, once each second
+setInterval(() => {
+    if (tickingOn && setupAudio()) {
+        playTone(1100, 0.045, 0.035, "square");
+    }
+}, 1000);
 
-    // Short, soft clock tick every second
-    playTone(1500, 0.045, 0.055);
-  }
+document.getElementById("tickButton").addEventListener("click", () => {
+    if (!setupAudio()) return;
 
+    tickingOn = !tickingOn;
+    document.getElementById("tickButton").textContent =
+        tickingOn ? "♪ Disable Ticking" : "♪ Enable Ticking";
+});
 
-  /* ===== ROMANTIC INSTRUMENTAL MUSIC ===== */
-
-  // A simple melody generated locally in the browser.
-  // No external MP3 link is needed.
-  const melody = [
+// Soft, generated instrumental-style melody
+const melody = [
     523.25, 659.25, 783.99, 659.25,
     587.33, 698.46, 880.00, 698.46,
-    523.25, 659.25, 783.99, 1046.5,
-    880.00, 783.99, 659.25, 587.33,
-    523.25, 587.33, 659.25, 783.99,
-    698.46, 659.25, 587.33, 523.25
-  ];
+    523.25, 659.25, 783.99, 1046.50,
+    880.00, 783.99, 659.25, 587.33
+];
 
-  function scheduleMusic() {
-    if (!audioContext || !musicPlaying) return;
+function playNextNote() {
+    if (!musicOn || !audioContext) return;
 
-    while (nextNoteTime < audioContext.currentTime + 0.5) {
-      const freq = melody[melodyIndex % melody.length];
+    const frequency = melody[noteIndex % melody.length];
+    playTone(frequency, 0.65, 0.055, "sine");
+    noteIndex++;
+}
 
-      playTone(freq, 0.48, 0.045, nextNoteTime);
+document.getElementById("musicButton").addEventListener("click", () => {
+    if (!setupAudio()) return;
 
-      // Gentle lower accompaniment
-      if (melodyIndex % 4 === 0) {
-        playTone(freq / 2, 0.8, 0.018, nextNoteTime);
-      }
+    musicOn = !musicOn;
 
-      melodyIndex++;
-      nextNoteTime += 0.48;
-    }
-  }
-
-  function startMusic() {
-    if (!audioContext) {
-      const AudioCtx = window.AudioContext ||
-                       window.webkitAudioContext;
-
-      if (!AudioCtx) {
-        $("musicLabel").textContent = "Audio not supported";
-        return;
-      }
-
-      audioContext = new AudioCtx();
-    }
-
-    audioContext.resume().then(function () {
-      audioEnabled = true;
-      musicPlaying = true;
-      nextNoteTime = audioContext.currentTime + 0.05;
-
-      if (musicTimer) clearInterval(musicTimer);
-      musicTimer = setInterval(scheduleMusic, 100);
-
-      scheduleMusic();
-
-      $("musicLabel").textContent = "Pause Music";
-      $("musicButton").classList.add("playing");
-    }).catch(function () {
-      $("musicLabel").textContent = "Tap to Try Again";
-    });
-  }
-
-  function stopMusic() {
-    musicPlaying = false;
-
-    if (musicTimer) {
-      clearInterval(musicTimer);
-      musicTimer = null;
-    }
-
-    $("musicLabel").textContent = "Play Music";
-    $("musicButton").classList.remove("playing");
-  }
-
-  $("musicButton").addEventListener("click", function () {
-    if (musicPlaying) {
-      stopMusic();
+    if (musicOn) {
+        playNextNote();
+        musicTimer = setInterval(playNextNote, 700);
+        document.getElementById("musicButton").textContent = "♫ Pause Music";
     } else {
-      startMusic();
+        clearInterval(musicTimer);
+        document.getElementById("musicButton").textContent = "♫ Play Music";
     }
-  });
+});
 
 
-  /* ===== FALLING ROSE PETALS ===== */
+// FALLING ROSE PETALS
+const canvas = document.getElementById("petals");
+const ctx = canvas.getContext("2d");
 
-  const canvas = $("petalsCanvas");
-  const ctx = canvas.getContext("2d");
-  const screen = document.querySelector(".screen");
+let width, height, petals = [];
 
-  let width = 0;
-  let height = 0;
-  let petals = [];
-  let animationFrame = null;
+function resizeCanvas() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+    createPetals();
+}
 
-  const reducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
+function createPetals() {
+    petals = [];
 
-  function newPetal(randomY) {
-    return {
-      x: Math.random() * Math.max(width, 1),
-      y: randomY ? Math.random() * Math.max(height, 1)
-                 : -20 - Math.random() * 60,
-      size: 5 + Math.random() * 8,
-      speed: 0.8 + Math.random() * 1.5,
-      drift: (Math.random() - 0.5) * 0.8,
-      angle: Math.random() * 6.28,
-      spin: (Math.random() - 0.5) * 0.045,
-      sway: Math.random() * 6.28,
-      swaySpeed: 0.015 + Math.random() * 0.02,
-      color: Math.random() > 0.8
-        ? "#e5c27e"
-        : (Math.random() > 0.5 ? "#ffc0d7" : "#d75b86"),
-      alpha: 0.65 + Math.random() * 0.3
-    };
-  }
+    for (let i = 0; i < 38; i++) {
+        petals.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            size: 5 + Math.random() * 8,
+            speed: 0.6 + Math.random() * 1.5,
+            drift: Math.random() * 1.4 - 0.7,
+            rotation: Math.random() * Math.PI * 2,
+            spin: (Math.random() - 0.5) * 0.035,
+            opacity: 0.45 + Math.random() * 0.45
+        });
+    }
+}
 
-  function resizeCanvas() {
-    const rect = screen.getBoundingClientRect();
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-
-    width = rect.width;
-    height = rect.height;
-
-    canvas.width = Math.round(width * dpr);
-    canvas.height = Math.round(height * dpr);
-    canvas.style.width = width + "px";
-    canvas.style.height = height + "px";
-
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-    const count = Math.min(
-      70, Math.max(30, Math.floor(width / 8))
-    );
-
-    petals = Array.from(
-      { length: count },
-      () => newPetal(true)
-    );
-  }
-
-  function drawPetal(p) {
-    ctx.save();
-    ctx.translate(p.x, p.y);
-    ctx.rotate(p.angle);
-    ctx.globalAlpha = p.alpha;
-    ctx.fillStyle = p.color;
-
-    ctx.beginPath();
-    ctx.moveTo(0, -p.size);
-    ctx.bezierCurveTo(
-      p.size, -p.size * 0.6,
-      p.size, p.size * 0.6,
-      0, p.size
-    );
-    ctx.bezierCurveTo(
-      -p.size, p.size * 0.6,
-      -p.size, -p.size * 0.6,
-      0, -p.size
-    );
-    ctx.fill();
-    ctx.restore();
-  }
-
-  function animatePetals() {
-    animationFrame = null;
-
-    if (document.hidden || reducedMotion) return;
-
+function drawPetals() {
     ctx.clearRect(0, 0, width, height);
 
-    for (let i = 0; i < petals.length; i++) {
-      const p = petals[i];
+    petals.forEach(p => {
+        p.y += p.speed;
+        p.x += p.drift;
+        p.rotation += p.spin;
 
-      p.sway += p.swaySpeed;
-      p.x += p.drift + Math.sin(p.sway) * 0.7;
-      p.y += p.speed;
-      p.angle += p.spin;
+        if (p.y > height + 20) {
+            p.y = -20;
+            p.x = Math.random() * width;
+        }
 
-      drawPetal(p);
+        if (p.x < -20) p.x = width + 20;
+        if (p.x > width + 20) p.x = -20;
 
-      if (p.y > height + 20) {
-        petals[i] = newPetal(false);
-      }
-    }
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rotation);
+        ctx.globalAlpha = p.opacity;
+        ctx.fillStyle = "#e9a0b7";
 
-    animationFrame = requestAnimationFrame(animatePetals);
-  }
+        ctx.beginPath();
+        ctx.ellipse(0, 0, p.size * 0.55, p.size, 0, 0,
+                    Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+    });
 
-  function startPetals() {
-    if (!reducedMotion && !document.hidden &&
-        animationFrame === null) {
-      animationFrame = requestAnimationFrame(animatePetals);
-    }
-  }
+    requestAnimationFrame(drawPetals);
+}
 
-  function stopPetals() {
-    if (animationFrame !== null) {
-      cancelAnimationFrame(animationFrame);
-      animationFrame = null;
-    }
-  }
-
-  resizeCanvas();
-  startPetals();
-
-  window.addEventListener("resize", function () {
-    resizeCanvas();
-    startPetals();
-  });
-
-  document.addEventListener("visibilitychange", function () {
-    if (document.hidden) {
-      stopPetals();
-    } else {
-      startPetals();
-    }
-  });
-
-})();
+window.addEventListener("resize", resizeCanvas);
+resizeCanvas();
+drawPetals();
 </script>
 </body>
 </html>
