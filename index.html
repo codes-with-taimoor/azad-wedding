@@ -22,16 +22,14 @@ html,body{
   -webkit-tap-highlight-color:transparent;
 }
 
-/* ============ SCREEN ============ */
 .screen{
   position:relative;
   min-height:100vh;min-height:100svh;
   display:flex;align-items:center;justify-content:center;
   text-align:center;
-  padding:52px 18px 130px;
+  padding:52px 18px 160px;
   overflow:hidden;
   isolation:isolate;
-  /* Fallback gradient — always visible if image fails */
   background:
     radial-gradient(circle at 20% 15%, rgba(201,169,110,.28), transparent 50%),
     radial-gradient(circle at 80% 85%, rgba(244,161,192,.22), transparent 50%),
@@ -39,6 +37,7 @@ html,body{
 }
 
 /* ============ BACKGROUND IMAGE ============ */
+/* ▼▼▼ CHANGE 'bg.jpg' TO YOUR IMAGE FILENAME IF DIFFERENT ▼▼▼ */
 .bg-image{
   position:absolute;
   inset:0;
@@ -51,7 +50,6 @@ html,body{
   transform:scale(1.05);
 }
 
-/* Dark overlay for readability */
 .screen::before{
   content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
   background:
@@ -72,7 +70,6 @@ html,body{
 
 .content{width:100%;max-width:1400px;position:relative;z-index:1}
 
-/* --- CORNER FRAME --- */
 .corner{position:absolute;width:78px;height:78px;opacity:.9;pointer-events:none;z-index:3}
 .corner::before,.corner::after{
   content:"";position:absolute;background:var(--gold);
@@ -85,7 +82,6 @@ html,body{
 .bl{bottom:16px;left:16px;transform:scaleY(-1)}
 .br{bottom:16px;right:16px;transform:scale(-1)}
 
-/* --- TEXT --- */
 .ornament{
   color:var(--gold);font-size:26px;letter-spacing:10px;
   text-shadow:0 0 20px rgba(255,210,120,.7);
@@ -124,7 +120,6 @@ h1{
   text-shadow:0 2px 10px rgba(0,0,0,.95);
 }
 
-/* ============ TOTAL MINUTES HERO ============ */
 .minutes-hero{margin:0 auto 18px;max-width:720px}
 .minutes-total{
   font-size:clamp(56px,13vw,150px);
@@ -154,7 +149,6 @@ h1{
   text-shadow:0 2px 10px rgba(0,0,0,.95);
 }
 
-/* ============ COUNTDOWN GRID ============ */
 .countdown{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -187,7 +181,6 @@ h1{
   text-transform:uppercase;
 }
 
-/* --- DATE BOX --- */
 .date-box{
   display:inline-block;
   border:1px solid rgba(201,169,110,.85);
@@ -196,7 +189,7 @@ h1{
   box-shadow:
     inset 0 0 20px rgba(201,169,110,.10),
     0 0 28px rgba(201,169,110,.18);
-  margin-bottom:28px;
+  margin-bottom:40px;
   backdrop-filter:blur(4px);
 }
 .date-text{
@@ -211,7 +204,7 @@ h1{
   color:#ffe6c5;
   font-family:"Great Vibes",cursive;
   font-size:clamp(22px,3vw,34px);
-  margin:0 0 20px 0;
+  margin:0 0 70px 0;
   text-shadow:
     0 0 16px rgba(255,190,130,.6),
     0 2px 12px rgba(0,0,0,.95);
@@ -219,7 +212,6 @@ h1{
   z-index:2;
 }
 
-/* ============ MUSIC BUTTON ============ */
 .music-button{
   position:fixed;z-index:10;right:14px;bottom:14px;
   display:flex;align-items:center;gap:8px;
@@ -251,23 +243,23 @@ h1{
 }
 
 @media(max-width:600px){
-  .screen{padding:44px 12px 130px}
+  .screen{padding:44px 12px 170px}
   .corner{width:46px;height:46px}
   .tl{top:10px;left:10px}.tr{top:10px;right:10px}
   .bl{bottom:10px;left:10px}.br{bottom:10px;right:10px}
   .countdown{gap:7px}
   .unit{border-radius:8px;padding:10px 3px}
   .music-button{right:10px;bottom:10px;padding:8px 12px;font-size:10.5px}
-  .wish{margin-bottom:24px;font-size:20px}
-  .date-box{margin-bottom:32px}
+  .wish{margin-bottom:80px;font-size:20px}
+  .date-box{margin-bottom:44px}
 }
 @media(max-height:720px) and (min-width:601px){
-  .screen{padding:22px 14px 110px}
+  .screen{padding:22px 14px 130px}
   .ornament{margin-bottom:6px}
   h1{font-size:clamp(38px,6.5vw,70px)}
   .divider{margin:6px auto 14px}
   .minutes-total{font-size:clamp(60px,10vw,110px)}
-  .wish{margin-top:12px;margin-bottom:30px}
+  .wish{margin-top:12px;margin-bottom:70px}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
@@ -277,11 +269,15 @@ h1{
 <body>
 <main class="screen">
 
-  <!-- BACKGROUND IMAGE with automatic fallback -->
-  <img class="bg-image" id="bgImg"
-       src="https://i.ibb.co/vbvhpVL/wedding.jpg"
-       alt="Azad Wedding"
-       onerror="this.onerror=null; this.style.display='none';">
+  <!-- ============================================
+       BACKGROUND IMAGE
+       Make sure 'bg.jpg' is in the SAME folder
+       as this index.html file on GitHub.
+       If your image has a different name,
+       change 'bg.jpg' below to match.
+       ============================================ -->
+  <img class="bg-image" src="bg.jpg" alt="Azad Wedding"
+       onerror="this.style.display='none';">
 
   <div class="corner tl"></div>
   <div class="corner tr"></div>
@@ -323,8 +319,18 @@ h1{
   </button>
 </main>
 
+<!-- ============================================
+     BACKGROUND MUSIC (romantic wedding piano)
+     ============================================ -->
 <audio id="weddingMusic" loop preload="auto" playsinline>
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=relaxing-145038.mp3" type="audio/mpeg">
+  <source src="https://cdn.pixabay.com/audio/2026/01/13/audio_465808.mp3" type="audio/mpeg">
+</audio>
+
+<!-- ============================================
+     CLOCK TICK SOUND (plays every second)
+     ============================================ -->
+<audio id="tickSound" preload="auto" playsinline>
+  <source src="https://cdn.pixabay.com/audio/2025/06/24/audio_365218.mp3" type="audio/mpeg">
 </audio>
 
 <script>
@@ -341,7 +347,11 @@ h1{
   var secNumEl    = document.getElementById('secondsNum');
   var labelEl     = document.getElementById('countdownLabel');
 
+  var tickSound = document.getElementById('tickSound');
   var numFmt = new Intl.NumberFormat('en-US');
+  var audioEnabled = false; // unlocked after first user tap
+  var lastSecond = -1;
+
   function pad(n){ return n < 10 ? '0' + n : '' + n; }
 
   function updateCountdown(){
@@ -370,6 +380,18 @@ h1{
     hoursEl.textContent   = pad(h);
     minutesEl.textContent = pad(m);
     secNumEl.textContent  = pad(s);
+
+    /* Play tick sound on each new second (after user enables audio) */
+    if (s !== lastSecond) {
+      lastSecond = s;
+      if (audioEnabled && tickSound) {
+        try {
+          tickSound.currentTime = 0;
+          tickSound.volume = 0.35;
+          tickSound.play().catch(function(){});
+        } catch(e) {}
+      }
+    }
   }
   updateCountdown();
   setInterval(updateCountdown, 1000);
@@ -406,6 +428,8 @@ h1{
   }
 
   button.addEventListener('click', function(){
+    audioEnabled = true; // unlock audio on first tap
+
     if (music.paused){
       var p = music.play();
       if (p && p.catch){
@@ -427,7 +451,8 @@ h1{
     timerEl.textContent = fmt(music.currentTime);
   });
 
-  music.volume = 0.6;
+  music.volume = 0.55;
+  tickSound.volume = 0.35;
   syncButton();
 })();
 </script>
